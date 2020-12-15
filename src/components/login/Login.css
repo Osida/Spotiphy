@@ -7,6 +7,8 @@
 
 .login > img {
   width: 100%;
+  /* weird */
+  background-color: white;
 }
 
 .login > a {
