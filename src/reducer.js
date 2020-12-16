@@ -1,13 +1,14 @@
+const _token = "";
 // the initial state of the data layer
 export const initialState = {
   user: null,
-  playlist: [],
+  playlists: [],
+  // spotify: null,
+  discover_weekly: null,
+  // top_artists: null,
   playing: false,
   item: null,
-  // token:
-  //   "BQAsxfBQYSnG3LdI0zpiNB1SwUZstisjq_WbwrP2krlSikHPbeaRdL02kg_I_gm6DZgHLco7QjNmdtX5r97YHE63y6ja3Q62om23HjPSIfk40Zew2BT9_pP30Hznkl-gQse7q3k7nyVL_WsTQ6NTIFdOfBIat9QhSxpIRYDhA-ph2HpwtkwX3DOXryNaK_bvYvEKEfgGvJPGse72wnIwCris6Btp_Flj1QfInrJQ8_gOoqEU_RlTWpm1zIpL8Do43DHm0YYzB8vIDSNgRS1i0Xp0Boue3Zo",
-  // token: null,
-  discover_weekly: [],
+  // token: process.env.REACT_APP_URL_TOKEN,
 };
 
 // state => the current look of the data layer
@@ -34,10 +35,10 @@ const reducer = (state, action) => {
         ...state,
         playlist: action.playlist,
       };
-    case "SET_DISCOVER_WEEKLy":
+    case "SET_DISCOVER_WEEKLY":
       return {
         ...state,
-        discover_weeklY: action.discover_weeklY,
+        discover_weekly: action.discover_weekly,
       };
     default:
       return state;
