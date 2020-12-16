@@ -4,9 +4,10 @@ export const initialState = {
   playlist: [],
   playing: false,
   item: null,
-  token:
-    "BQAsxfBQYSnG3LdI0zpiNB1SwUZstisjq_WbwrP2krlSikHPbeaRdL02kg_I_gm6DZgHLco7QjNmdtX5r97YHE63y6ja3Q62om23HjPSIfk40Zew2BT9_pP30Hznkl-gQse7q3k7nyVL_WsTQ6NTIFdOfBIat9QhSxpIRYDhA-ph2HpwtkwX3DOXryNaK_bvYvEKEfgGvJPGse72wnIwCris6Btp_Flj1QfInrJQ8_gOoqEU_RlTWpm1zIpL8Do43DHm0YYzB8vIDSNgRS1i0Xp0Boue3Zo",
+  // token:
+  //   "BQAsxfBQYSnG3LdI0zpiNB1SwUZstisjq_WbwrP2krlSikHPbeaRdL02kg_I_gm6DZgHLco7QjNmdtX5r97YHE63y6ja3Q62om23HjPSIfk40Zew2BT9_pP30Hznkl-gQse7q3k7nyVL_WsTQ6NTIFdOfBIat9QhSxpIRYDhA-ph2HpwtkwX3DOXryNaK_bvYvEKEfgGvJPGse72wnIwCris6Btp_Flj1QfInrJQ8_gOoqEU_RlTWpm1zIpL8Do43DHm0YYzB8vIDSNgRS1i0Xp0Boue3Zo",
   // token: null,
+  discover_weekly: [],
 };
 
 // state => the current look of the data layer
@@ -32,6 +33,11 @@ const reducer = (state, action) => {
       return {
         ...state,
         playlist: action.playlist,
+      };
+    case "SET_DISCOVER_WEEKLy":
+      return {
+        ...state,
+        discover_weeklY: action.discover_weeklY,
       };
     default:
       return state;

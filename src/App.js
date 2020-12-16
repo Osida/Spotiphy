@@ -45,6 +45,13 @@ export default function App() {
           playlist: playlist,
         });
       });
+
+      spotify.getPlaylist("37i9dQZEVXcFaQKLML4MRy").then((response) =>
+        dispatch({
+          type: "SET_DISCOVER_WEEKLY",
+          discover_weekly: response,
+        })
+      );
     }
   }, []);
 
