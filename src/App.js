@@ -4,7 +4,6 @@ import { useDataLayerValue } from "./DataLayer";
 import { getTokenFromURL } from "./spotify";
 import SpotifyWebApi from "spotify-web-api-js";
 import "./App.css";
-import { AccordionActions } from "@material-ui/core";
 
 // creates an instance of spotify (allows communication back & forth with spotify)
 const spotify = new SpotifyWebApi();
