@@ -7,7 +7,7 @@ import "./Player.css";
 export default function Player({ spotify }) {
   return (
     <div className="player">
-      <div className="play__body">
+      <div className="player__body">
         <Sidebar />
         <Body spotify={spotify} />
       </div>

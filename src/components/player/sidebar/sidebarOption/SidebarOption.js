@@ -1,9 +1,12 @@
 import React from "react";
 
-export default function SidebarOption() {
+import "./SidebarOption.css";
+
+export default function SidebarOption({ option = "test", Icon }) {
   return (
-    <div>
-      <h1></h1>
+    <div className="sideBarOption">
+      {Icon && <Icon className="sideBarOption__icon" />}
+      {Icon ? <h4>{option}</h4> : <p>{option}</p>}
     </div>
   );
 }
