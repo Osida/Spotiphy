@@ -1,65 +1,75 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+
 import { Login, Player } from "./components/index";
 import { useDataLayerValue } from "./DataLayer";
 import { getTokenFromURL } from "./spotify";
 import SpotifyWebApi from "spotify-web-api-js";
-import "./App.css";
 
-// creates an instance of spotify (allows communication back & forth with spotify)
-const spotify = new SpotifyWebApi();
+// import "./App.css";
 
-export default function App() {
+// creates a spotify instance (allows us to comm. w/ spotify back & forth)
+const s = new SpotifyWebApi();
+
+function App() {
   // how we grab something from the data layer
   // {} => what we want from the data layer
   // dispatch => how we update the data layer
-  const [{ user, token }, dispatch] = useDataLayerValue();
+  const [{ token }, dispatch] = useDataLayerValue();
 
   useEffect(() => {
+    // Set token
     const hash = getTokenFromURL();
     window.location.hash = "";
-    const _urlToken = hash.access_token;
+    let _token = hash.access_token;
 
-    if (_urlToken) {
-      // updating data layer token w/ _urlToken
+    if (_token) {
+      s.setAccessToken(_token);
+
       dispatch({
         type: "SET_TOKEN",
-        token: _urlToken,
+        token: _token,
       });
 
-      spotify.setAccessToken(_urlToken);
-
-      spotify
-        .getMe()
-        .then((user) => {
-          dispatch({
-            type: "SET_USER",
-            user,
-            // user: user,
-          });
-        })
-        .catch((e) => console.log("There was an error getting the user = ", e));
-
-      spotify.getUserPlaylists().then((playlist) => {
-        dispatch({
-          type: "SET_PLAYLIST",
-          playlist: playlist,
-        });
-      });
-
-      spotify.getPlaylist("37i9dQZEVXcFaQKLML4MRy").then((response) =>
+      s.getPlaylist("37i9dQZEVXcFaQKLML4MRy").then((response) =>
         dispatch({
           type: "SET_DISCOVER_WEEKLY",
           discover_weekly: response,
         })
       );
+
+      s.getMyTopArtists().then((response) =>
+        dispatch({
+          type: "SET_TOP_ARTISTS",
+          top_artists: response,
+        })
+      );
+
+      dispatch({
+        type: "SET_SPOTIFY",
+        spotify: s,
+      });
+
+      s.getMe().then((user) => {
+        dispatch({
+          type: "SET_USER",
+          user,
+        });
+      });
+
+      s.getUserPlaylists().then((playlists) => {
+        dispatch({
+          type: "SET_PLAYLISTS",
+          playlists,
+        });
+      });
     }
-  }, []);
+  }, [token, dispatch]);
 
   return (
     <>
-      <div className="App">
-        {/* you can dispatch the spotify {} into the data layer */}
-        {token ? <Player spotify={spotify} /> : <Login />}
+      <div className="app">
+        {!token && <Login />}
+        {token && <Player spotify={s} />}
       </div>
       {process.env.NODE_ENV === "development"
         ? console.log(process.env.REACT_APP_DEV_MODE)
@@ -67,3 +77,5 @@ export default function App() {
     </>
   );
 }
+
+export default App;

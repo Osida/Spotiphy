@@ -1,44 +1,67 @@
-const _token = "";
-// the initial state of the data layer
+import { findAllByDisplayValue } from "@testing-library/react";
+
 export const initialState = {
   user: null,
   playlists: [],
-  // spotify: null,
+  spotify: null,
   discover_weekly: null,
-  // top_artists: null,
+  top_artists: null,
   playing: false,
   item: null,
-  // token: process.env.REACT_APP_URL_TOKEN,
 };
 
-// state => the current look of the data layer
-// action => how we manipulate what/how the data layer looks like
-// reducer => primary job is to listen to/for actions
+// state -> the current look of the data layer
+// action -> how we manipulate what/how the data layer looks like
+// reducer -> primary job is to listen to/for actions
 const reducer = (state, action) => {
-  console.log("action = ", action);
-
-  // action -> type, [payload] *can be called anything we want
+  console.log(action);
   switch (action.type) {
     case "SET_USER":
-      // how the new state will look
       return {
         ...state,
         user: action.user,
       };
+
+    case "SET_PLAYING":
+      return {
+        ...state,
+        playing: action.playing,
+      };
+
+    case "SET_ITEM":
+      return {
+        ...state,
+        item: action.item,
+      };
+
+    case "SET_DISCOVER_WEEKLY":
+      return {
+        ...state,
+        discover_weekly: action.discover_weekly,
+      };
+
+    case "SET_TOP_ARTISTS":
+      return {
+        ...state,
+        top_artists: action.top_artists,
+      };
+
     case "SET_TOKEN":
       return {
         ...state,
         token: action.token,
       };
-    case "SET_PLAYLIST":
+
+    case "SET_SPOTIFY":
       return {
         ...state,
-        playlist: action.playlist,
+        spotify: action.spotify,
       };
-    case "SET_DISCOVER_WEEKLY":
+
+    case "SET_PLAYLISTS":
       return {
         ...state,
-        discover_weekly: action.discover_weekly,
+        playlists: action.playlists,
       };
     default:
       return state;

@@ -9,11 +9,9 @@
   background-color: #282828;
 }
 
-/* targets the class in Material ui for the slider */
 .footer__right * .MuiSlider-root {
   color: green;
 }
-
 .footer__left {
   display: flex;
   align-items: center;
