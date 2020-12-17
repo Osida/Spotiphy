@@ -12,12 +12,13 @@ import LibraryMusicIcon from "@material-ui/icons/LibraryMusic";
 import "./Sidebar.css";
 
 export default function Sidebar() {
-  const [{ playlist }, dispatch] = useDataLayerValue();
-  console.log("playlist = ", playlist);
+  const [{ playlists }, dispatch] = useDataLayerValue();
+  console.log("playlist = ", playlists);
 
   return (
     <div className="sidebar">
       <img
+        className="sidebar__logo"
         src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg"
         alt=""
       />
@@ -25,12 +26,11 @@ export default function Sidebar() {
       <SidebarOption Icon={HomeIcon} option="Home" />
       <SidebarOption Icon={SearchIcon} option="Search" />
       <SidebarOption Icon={LibraryMusicIcon} option="Your Library" />
-
       <br />
-      <strong className="sidebar__title">PLAYLIST</strong>
+      <strong className="sidebar__title">PLAYLISTS</strong>
       <hr />
 
-      {playlist?.items?.map((playlist) => (
+      {playlists?.items?.map((playlist) => (
         <SidebarOption option={playlist.name} />
       ))}
     </div>

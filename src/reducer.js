@@ -1,24 +1,20 @@
 import { findAllByDisplayValue } from "@testing-library/react";
 
-// the initial state of the data layer
 export const initialState = {
   user: null,
-  playlist: [],
+  playlists: [],
   spotify: null,
   discover_weekly: null,
   top_artists: null,
   playing: false,
   item: null,
-  token: null,
-  // token: process.env.REACT_APP_URL_TOKEN,
 };
 
 // state -> the current look of the data layer
 // action -> how we manipulate what/how the data layer looks like
 // reducer -> primary job is to listen to/for actions
 const reducer = (state, action) => {
-  console.log("action = ", action);
-
+  console.log(action);
   switch (action.type) {
     case "SET_USER":
       return {

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 
-import { useDataLayerValue } from "../../../DataLayer";
+import { useDataLayerValue } from "../../../../DataLayer";
 
 import { Avatar } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
@@ -19,7 +19,6 @@ export default function Header({ spotify }) {
           type="text"
         />
       </div>
-
       <div className="header__right">
         <Avatar alt={user?.display_name} src={user?.images[0].url} />
         <h4>{user?.display_name}</h4>

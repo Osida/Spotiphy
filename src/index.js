@@ -3,13 +3,15 @@ import ReactDOM from "react-dom";
 
 import App from "./App";
 import { DataLayer } from "./DataLayer";
-import reducer, { initialValue } from "./reducer";
+import reducer, { initialState } from "./reducer";
 
 import "./index.css";
 
 ReactDOM.render(
-  <DataLayer initialValue={initialValue} reducer={reducer}>
+  // <React.StrictMode>
+  <DataLayer initialState={initialState} reducer={reducer}>
     <App />
   </DataLayer>,
+  // </React.StrictMode>,
   document.getElementById("root")
 );
